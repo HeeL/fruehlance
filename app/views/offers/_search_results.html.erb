@@ -1,0 +1,7 @@
+<div id="search_results">
+  <%@offers.each do |offer|%>
+    <h2><%=offer.title%></h2>
+    <i><%=nice_date(offer.posted_at)%></i>
+    <p><%=offer.desc%></p>
+  <%end%>
+</div>
