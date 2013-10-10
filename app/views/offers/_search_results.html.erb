@@ -1,7 +1,3 @@
 <div id="search_results">
-  <%@offers.each do |offer|%>
-    <h2><%=offer.title%></h2>
-    <i><%=nice_date(offer.posted_at)%></i>
-    <p><%=offer.desc%></p>
-  <%end%>
+  <%=render partial: 'offers/search_result_item', collection: @offers, as: :offer%>
 </div>

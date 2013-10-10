@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131008212559) do
+ActiveRecord::Schema.define(version: 20131009193122) do
 
   create_table "offers", force: true do |t|
     t.integer  "source"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 20131008212559) do
     t.date     "posted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ext_id"
+    t.string   "offer_url"
   end
 
 end
