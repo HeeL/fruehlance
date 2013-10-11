@@ -31,5 +31,10 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'launchy'
   gem 'factory_girl_rails'
+  gem 'shoulda'
+  gem 'shoulda-matchers'
 end

@@ -20,6 +20,10 @@ class Offer < ActiveRecord::Base
     end
   end
 
+  def self.delete_old!
+    Offer.where("created_at <= ?", 1.week.ago).destroy_all
+  end
+
   def self.source_id(source)
     SOURCES.index(source)
   end

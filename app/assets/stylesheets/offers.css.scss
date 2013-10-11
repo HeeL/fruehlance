@@ -1,0 +1,26 @@
+#search_results {
+  .search-result-item {
+    border: 1px solid #ccc;
+    padding: 0 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    color: #011422;
+  }
+  p {
+    margin: 5px 0 10px 0;
+  }
+  h2 {
+    color: #4D4D4D;
+    font-weight: bold;
+    font-size: 22px;
+    margin: 10px 0 5px 0;
+    a {
+      color: #4D4D4D;  
+    }
+  }
+  i {
+    color: #888;
+    font-size: 11px;
+    font-style: italic;
+  }
+}

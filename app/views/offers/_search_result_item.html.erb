@@ -1,3 +1,5 @@
-<h2><%=offer.title%></h2>
-<i><%=nice_date(offer.posted_at)%></i>
-<p><%=simple_format(offer.desc)%></p>
+<div class="search-result-item">
+  <h2><%=link_to offer.title, offer.offer_url, target: '_blank'%></h2>
+  <i><%=nice_date(offer.posted_at)%></i>
+  <%=simple_format(offer.desc)%>
+</div>
