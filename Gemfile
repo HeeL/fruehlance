@@ -25,6 +25,8 @@ end
 
 gem 'kaminari'
 
+gem 'whenever', require: false
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -38,3 +40,6 @@ group :test do
   gem 'shoulda'
   gem 'shoulda-matchers'
 end
+
+gem 'unicorn'
+gem 'capistrano', '~> 2.0'
