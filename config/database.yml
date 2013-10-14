@@ -3,8 +3,7 @@ development:
   encoding:  utf-8
   database: fruehlance_development
   pool: 5
-  username: postgres
-  password: test
+  username: heel
   host: localhost
 
 test:
@@ -12,6 +11,5 @@ test:
   encoding:  utf-8
   database: fruehlance_test
   pool: 5
-  username: postgres
-  password: test
+  username: heel
   host: localhost
