@@ -1,4 +1,10 @@
-<h1>Find a Freelance Job</h1>
+<div class="search-block">
+  <h1>Find a Freelance Job</h1>
+  <%= render 'offers/search_form' %>
+</div>
 
-<%= render 'offers/search_form' %>
-<%= render 'offers/search_results' if @offers.present?%>
+<%if @offers.present?%>
+  <%= render 'offers/search_results' %>
+<%elsif params[:search].present?%>
+  <%= render 'offers/no_search_results' %>
+<%end%>

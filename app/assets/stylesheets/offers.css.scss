@@ -1,3 +1,16 @@
+.search-block {
+  width: 430px;
+  margin: 0 auto 35px auto;
+}
+
+#nothing_found {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-right: 90px;
+  text-align: center;
+}
+
 input[type="submit"] {
   width: 100px;
   height: 25px;
@@ -14,6 +27,12 @@ input[type="text"] {
     border-radius: 10px;
     margin-top: 15px;
     color: #011422;
+    .scroll-arrow {
+      float: right;
+      text-decoration: none;
+      color: #ccc;
+      font-size: 20px;
+    }
   }
   p {
     margin: 5px 0 10px 0;
@@ -33,6 +52,6 @@ input[type="text"] {
     font-style: italic;
   }
   .odd {
-    background-color: #DDDEA0;
+    background-color: #E3E4FA;
   }
 }

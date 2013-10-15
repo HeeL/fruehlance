@@ -1,4 +1,5 @@
-<div class="search-result-item<%=' odd' if offer_counter.odd?%>">
+<div class="search-result-item<%=' odd' if offer_counter.odd?%>" data-num="<%=item_num(offer_counter)%>">
+  <a href="#" class="scroll-arrow">&darr;</a>
   <h2><%=link_to offer.title, offer.offer_url, target: '_blank'%></h2>
   <i><%=nice_date(offer.posted_at)%></i>
   <%=simple_format(offer.desc)%>

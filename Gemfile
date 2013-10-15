@@ -24,6 +24,7 @@ group :doc do
 end
 
 gem 'kaminari'
+gem 'oauth'
 
 gem 'whenever', require: false
 

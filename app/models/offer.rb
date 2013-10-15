@@ -2,7 +2,7 @@ class Offer < ActiveRecord::Base
 
   SOURCES = [:odesk]
 
-  PER_PAGE = 15
+  PER_PAGE = 16
 
   scope :newest, -> {order(posted_at: :desc)}
 

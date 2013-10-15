@@ -1,5 +1,13 @@
 $(document).ready(function(){
 
+  //scroll per item
+  $(document).on('click', '.scroll-arrow', function(e){
+    next_item = $('.search-result-item[data-num=' + (parseInt($(e.target).parent().data('num')) + 1) + ']');
+    scrollTo(0, next_item.offset().top);
+    e.preventDefault();
+  });
+
+  // Infinite Loading
   var page_num = 1
 
   if($('#search_results').length > 0) {

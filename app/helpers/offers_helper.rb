@@ -8,4 +8,8 @@ module OffersHelper
     params[:search].try(:[], param)
   end
 
+  def item_num(i)
+    i + ((params[:page] || 1).to_i - 1) * Offer::PER_PAGE + 1
+  end
+
 end
