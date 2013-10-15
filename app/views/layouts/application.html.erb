@@ -8,6 +8,7 @@
 </head>
 <body>
   <div id="content">
+    <%=mail_to 'parizhskiy@gmail.com', image_tag('mail.png'), class: "mail"%>
     <%= yield %>
     <%=image_tag 'loading.gif', id: 'items_loading'%>
   </div>

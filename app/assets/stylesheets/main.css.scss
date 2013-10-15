@@ -9,3 +9,12 @@ h1 {
   color: #888;
   text-align: center;
 }
+.mail {
+  float: right;
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  img {
+    border: 0;
+  }
+}
