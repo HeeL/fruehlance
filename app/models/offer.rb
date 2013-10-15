@@ -6,12 +6,16 @@ class Offer < ActiveRecord::Base
 
   scope :newest, -> {order(posted_at: :desc)}
 
+  def source_name
+    SOURCES[source]
+  end
+
   class << self
     def search(params, page)
       @params = params || {}
       offers = Offer
       offers = add_query_condition if @params[:query]
-      offers = add_source_condition if @params[:source].count != SOURCES.count
+      offers = add_source_condition if @params[:source] && @params[:source].count != SOURCES.count
       offers.newest.page(page).per(PER_PAGE)
     end
 

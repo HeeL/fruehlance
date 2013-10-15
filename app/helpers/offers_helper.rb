@@ -12,4 +12,8 @@ module OffersHelper
     i + ((params[:page] || 1).to_i - 1) * Offer::PER_PAGE + 1
   end
 
+  def source_checked?(source_id)
+    !params[:search] || !params[:search][:source] || params[:search][:source].try(:[], source_id.to_s)
+  end
+
 end

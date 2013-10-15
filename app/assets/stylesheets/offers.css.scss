@@ -46,10 +46,12 @@ input[type="text"] {
       color: #4D4D4D;  
     }
   }
-  i {
+  .meta-data {
     color: #888;
     font-size: 11px;
-    font-style: italic;
+    .separator {
+      margin: 0 5px;
+    }
   }
   .odd {
     background-color: #E3E4FA;
