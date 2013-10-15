@@ -28,6 +28,20 @@ class OffersHelperTest < ActionView::TestCase
     should "be checked by default" do
       assert_equal true, source_checked?(:test) 
     end
+
+    should "be unchecked if it's specified" do
+      def params
+        {search: {source: {'test2' => 1}}}
+      end
+      assert_nil source_checked?(:test)
+    end
+
+    should "be checked if it's specified" do
+      def params
+        {search: {source: {'test' => 1}}}
+      end
+      assert source_checked?(:test)
+    end
   end
 
 end

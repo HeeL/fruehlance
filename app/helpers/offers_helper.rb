@@ -13,7 +13,7 @@ module OffersHelper
   end
 
   def source_checked?(source_id)
-    !params[:search] || !params[:search][:source] || params[:search][:source].try(:[], source_id.to_s)
+    !params[:search] || !params[:search][:source] || params[:search][:source][source_id.to_s]
   end
 
 end
