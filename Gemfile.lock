@@ -172,6 +172,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
+  nokogiri
   oauth
   pg
   rails (= 4.0.0)

@@ -1,6 +1,9 @@
 .search-block {
   width: 430px;
   margin: 0 auto 35px auto;
+  input[type="checkbox"] {
+    margin-top: 5px;
+  }
 }
 
 #nothing_found {
@@ -49,11 +52,12 @@ input[type="text"] {
   .meta-data {
     color: #888;
     font-size: 11px;
+    margin: 10px 0 8px 0;
     .separator {
       margin: 0 5px;
     }
   }
   .odd {
-    background-color: #E3E4FA;
+    background-color: #DDECEF;
   }
 }

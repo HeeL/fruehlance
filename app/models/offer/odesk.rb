@@ -2,6 +2,7 @@ class Offer::Odesk
   require 'open-uri'
 
   API_URL = 'https://www.odesk.com/'
+  URL = 'https://www.odesk.com/'
   OFFERS_PATH = 'api/profiles/v1/search/jobs.json'
 
   class << self
@@ -9,9 +10,8 @@ class Offer::Odesk
       imported_offers = 0
       get_offers.each do |offer|
         offer.symbolize_keys!
-        next if offer_exists?(offer[:op_recno])
-        imported_offers += 1
-        Offer.create(
+        next if Offer.imported?(offer[:op_recno], :odesk)
+        new_offer = Offer.create(
           title:     offer[:op_title],
           source:    Offer.source_id(:odesk),
           desc:      offer[:op_description],
@@ -19,22 +19,19 @@ class Offer::Odesk
           ext_id:    offer[:op_recno],
           offer_url: offer_url(offer[:op_recno])
         )
+        imported_offers += 1 if new_offer.persisted?
       end
       imported_offers
     end
 
     private
 
-    def offer_exists?(ext_id)
-      Offer.where(ext_id: ext_id).first
-    end
-
     def get_date(seconds)
       Time.at(seconds.to_s.slice(0, 10).to_i).to_date
     end
 
     def offer_url(offer_id)
-      "https://www.odesk.com/job/#{offer_id}/apply/"
+      "#{URL}/job/#{offer_id}/apply/"
     end
 
     def get_offers

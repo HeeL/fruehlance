@@ -25,6 +25,7 @@ end
 
 gem 'kaminari'
 gem 'oauth'
+gem 'nokogiri'
 
 gem 'whenever', require: false
 

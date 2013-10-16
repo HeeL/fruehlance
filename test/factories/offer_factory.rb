@@ -4,5 +4,7 @@ FactoryGirl.define do
     desc 'We are seriously looking for a one great dev, please be the one'
     posted_at Date.yesterday
     source 1
+    sequence(:ext_id)
+    sequence(:offer_url){|i| "http://example.com/offer/#{i}"}
   end
 end

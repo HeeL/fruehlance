@@ -1,4 +1,4 @@
-every 10.minutes do
+every 5.minutes do
   runner "Offer.import!"
 end
 

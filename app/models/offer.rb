@@ -1,10 +1,15 @@
 class Offer < ActiveRecord::Base
 
-  SOURCES = [:odesk]
+  SOURCES = [:odesk, :freelansim]
 
   PER_PAGE = 16
 
   scope :newest, -> {order(posted_at: :desc)}
+
+  validates :title, :desc, :ext_id, :posted_at, :source, :offer_url, presence: true
+  validates :title, length: {minimum: 3}
+  validates :desc, length: {minimum: 10}
+
 
   def source_name
     SOURCES[source]
@@ -31,6 +36,10 @@ class Offer < ActiveRecord::Base
 
     def delete_old!
       where("created_at <= ?", 1.week.ago).destroy_all
+    end
+
+    def imported?(ext_id, source_name)
+      where(ext_id: ext_id, source: source_id(source_name)).first
     end
 
     def source_id(source)
