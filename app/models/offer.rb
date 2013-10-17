@@ -18,10 +18,10 @@ class Offer < ActiveRecord::Base
   class << self
     def search(params, page)
       @params = params || {}
-      offers = Offer
-      offers = add_query_condition if @params[:query]
-      offers = add_source_condition if @params[:source] && @params[:source].count != SOURCES.count
-      offers.newest.page(page).per(PER_PAGE)
+      @offers = Offer
+      add_query_condition if @params[:query]
+      add_source_condition if @params[:source] && @params[:source].count != SOURCES.count
+      @offers.newest.page(page).per(PER_PAGE)
     end
 
     def import!
@@ -50,11 +50,11 @@ class Offer < ActiveRecord::Base
 
     def add_query_condition
       q = "%#{@params[:query]}%"
-      where("offers.title ILIKE ? OR offers.desc ILIKE ?", q, q)
+      @offers = @offers.where("offers.title ILIKE ? OR offers.desc ILIKE ?", q, q)
     end
 
     def add_source_condition
-      where("offers.source IN (?)", @params[:source].keys.map(&:to_i))
+      @offers = @offers.where("offers.source IN (?)", @params[:source].keys.map(&:to_i))
     end
 
   end
