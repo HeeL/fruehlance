@@ -1,6 +1,6 @@
 class Offer < ActiveRecord::Base
 
-  SOURCES = [:odesk, :freelansim]
+  SOURCES = [:odesk, :freelansim, :elance]
 
   PER_PAGE = 16
 

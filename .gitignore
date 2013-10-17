@@ -17,3 +17,4 @@
 /tmp
 
 /config/environments/development.rb
+/config/application.yml
