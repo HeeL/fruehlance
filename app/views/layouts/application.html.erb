@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render 'shared/ga_code'%>
   <div id="content">
     <%=mail_to 'parizhskiy@gmail.com', image_tag('mail.png'), class: "mail"%>
     <%= yield %>
