@@ -1,6 +1,6 @@
 class Offer < ActiveRecord::Base
 
-  SOURCES = [:odesk, :freelansim, :elance]
+  SOURCES = [:odesk, :freelansim, :elance, :fl, :freelance_ru, :weblancer]
 
   PER_PAGE = 16
 
@@ -10,6 +10,14 @@ class Offer < ActiveRecord::Base
   validates :title, length: {minimum: 3}
   validates :desc, length: {minimum: 10}
 
+
+  def self.source_display_name(source_keyname)
+    name = {
+      fl: 'FL',
+      freelance_ru: 'Freelance.ru'
+    }[source_keyname]
+    name ? name : source_keyname.capitalize
+  end
 
   def source_name
     SOURCES[source]
@@ -49,8 +57,9 @@ class Offer < ActiveRecord::Base
     private
 
     def add_query_condition
-      q = "%#{@params[:query]}%"
-      @offers = @offers.where("offers.title ILIKE ? OR offers.desc ILIKE ?", q, q)
+      cond_parts = []; 
+      @params[:query].split(' ').each{|word| cond_parts << "offers.title ILIKE #{sanitize("%" + word + "%")} OR offers.desc ILIKE #{sanitize("%" + word + "%")}"}
+      @offers = @offers.where(cond_parts.join(' OR '))
     end
 
     def add_source_condition

@@ -3,7 +3,7 @@
   <%=submit_tag 'Find Offers'%> <br />
   <%Offer::SOURCES.each_with_index do |source_name, source_id|%>
     <label>
-      <%=check_box_tag "search[source[#{source_id}]]", '1', source_checked?(source_id)%> <%=source_name.capitalize%>
+      <%=check_box_tag "search[source[#{source_id}]]", '1', source_checked?(source_id)%> <%=Offer.source_display_name(source_name)%>
     </label><br />
   <%end%>
 
