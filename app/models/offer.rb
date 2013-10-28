@@ -58,12 +58,17 @@ class Offer < ActiveRecord::Base
 
     def add_query_condition
       cond_parts = []; 
-      @params[:query].split(' ').each{|word| cond_parts << "offers.title ILIKE #{sanitize("%" + word + "%")} OR offers.desc ILIKE #{sanitize("%" + word + "%")}"}
+      words = split_by_words(@params[:query])
+      words.each{|word| cond_parts << "offers.title ILIKE #{sanitize("%" + word + "%")} OR offers.desc ILIKE #{sanitize("%" + word + "%")}"}
       @offers = @offers.where(cond_parts.join(' OR '))
     end
 
     def add_source_condition
       @offers = @offers.where("offers.source IN (?)", @params[:source].keys.map(&:to_i))
+    end
+
+    def split_by_words(query)
+      query.split(' ').reject{|word| word.length < 3 || word == 'the'}
     end
 
   end

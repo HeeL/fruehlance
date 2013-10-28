@@ -18,3 +18,18 @@ h1 {
     border: 0;
   }
 }
+.ui-tooltip {
+  padding: 4px 6px;
+  font-size: 12px;
+}
+
+#uparrow {
+    background: url('uparrow.png');
+    cursor: pointer;
+    width: 66px;
+    height: 67px;
+    position: fixed;
+    bottom: 30px;
+    right:30px;
+    display:none;
+}

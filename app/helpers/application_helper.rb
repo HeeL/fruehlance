@@ -13,4 +13,11 @@ module ApplicationHelper
     end
   end
 
+  def source_image(source_name)
+    image_file = "#{source_name}.png"
+    alt = "Logo #{Offer.source_display_name(source_name)}"
+    return '' unless File.exists?(Rails.root.join('app', 'assets', 'images', 'sources', image_file))
+    image_tag "sources/#{image_file}", alt: alt, title: alt
+  end
+
 end

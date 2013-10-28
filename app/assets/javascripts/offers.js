@@ -11,6 +11,22 @@ $(document).ready(function(){
   var page_num = 1
 
   if($('#search_results').length > 0) {
+    // scroll up arrow
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > 50) {
+          $('#uparrow').fadeIn();
+      } else {
+          $('#uparrow').fadeOut();
+      }
+    });
+ 
+    $('#uparrow').click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 800);
+        return false;
+    });
+
     $(window).on('scroll', function(){
       if(loading_hidden() && near_bottom()) {
         $('#items_loading').css('top', $(document).height() - 100);
