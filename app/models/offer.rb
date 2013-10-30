@@ -23,10 +23,6 @@ class Offer < ActiveRecord::Base
     SOURCES[source]
   end
 
-  def source_display_name
-    Offer.source_display_name(source_name)
-  end
-
   class << self
     def search(params, page)
       @params = params || {}

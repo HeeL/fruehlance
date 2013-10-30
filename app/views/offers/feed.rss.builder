@@ -8,7 +8,7 @@ xml.rss :version => "2.0" do
     for offer in @offers
       xml.item do
         xml.title offer.title
-        xml.description "#{offer.source_display_name}:\n\n #{offer.desc}"
+        xml.description {xml.cdata!(source_image(offer.source_name) + simple_format(offer.desc))}
         xml.pubDate offer.posted_at.to_s(:rfc822)
         xml.link offer.offer_url
         xml.guid offer.offer_url
