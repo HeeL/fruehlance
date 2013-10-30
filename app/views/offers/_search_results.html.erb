@@ -1,3 +1,9 @@
+<div class="rss">
+  <a href="<%=url_for(params.merge(format: 'rss'))%>" target="_blank">
+    <%=image_tag 'rss.png', title: 'RSS for the current search query', alt: 'RSS for the current search query'%>
+  </a>
+</div>
+<div class="clear"></div>
 <div id="search_results">
   <%=render partial: 'offers/search_result_item', collection: @offers, as: :offer%>
 </div>

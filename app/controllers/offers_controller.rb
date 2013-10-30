@@ -9,7 +9,10 @@ class OffersController < ApplicationController
     if request.xhr?
       render partial: 'offers/search_result_item', collection: @offers, as: :offer
     else
-      render :index
+      respond_to do |format|
+        format.html {render :index}
+        format.rss  {render action: 'feed', layout: false}
+      end
     end
   end
 
