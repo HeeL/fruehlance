@@ -2,7 +2,7 @@ every 5.minutes do
   runner "Offer.import!"
 end
 
-every 1.week do
+every 15.days do
   runner "Offer.delete_old!"
 end
 
