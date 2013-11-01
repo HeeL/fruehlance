@@ -57,10 +57,11 @@ class Offer < ActiveRecord::Base
     private
 
     def add_query_condition
-      cond_parts = []; 
+      cond_parts = [];
+      cond_separator = @params[:any_word] ? 'OR' : 'AND'
       words = split_by_words(@params[:query])
-      words.each{|word| cond_parts << "offers.title ILIKE #{sanitize("%" + word + "%")} OR offers.desc ILIKE #{sanitize("%" + word + "%")}"}
-      @offers = @offers.where(cond_parts.join(' OR '))
+      words.each{|word| cond_parts << "(offers.title ILIKE #{sanitize("%" + word + "%")} OR offers.desc ILIKE #{sanitize("%" + word + "%")})"}
+      @offers = @offers.where(cond_parts.join(" #{cond_separator} "))
     end
 
     def add_source_condition
