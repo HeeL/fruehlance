@@ -29,7 +29,7 @@ $(document).ready(function(){
 
     $(window).on('scroll', function(){
       if(loading_hidden() && near_bottom()) {
-        $('#items_loading').css('top', $(document).height() - 100);
+        $('#items_loading').css('top', $(document).height() - 200);
         $('#items_loading').css('left', $(document).width() / 2);
         if(page_num > 0) {
           $('#items_loading').show();
