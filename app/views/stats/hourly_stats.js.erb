@@ -1,0 +1,4 @@
+<%@hourly_stats.each do |name, data|%>
+  hourly_chart.addSeries({name: '<%=Offer.source_display_name(name)%>', data: <%=data%>}, false);
+<%end%>
+hourly_chart.redraw();

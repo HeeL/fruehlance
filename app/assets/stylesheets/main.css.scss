@@ -26,6 +26,14 @@ h1 {
   font-size: 12px;
 }
 
+#navigation {
+  margin-bottom: 30px;
+  a {
+    margin-right: 15px;
+    color: #999;
+  }
+}
+
 #uparrow {
     background-image: image-url('uparrow.png');
     cursor: pointer;

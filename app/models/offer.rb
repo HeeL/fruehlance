@@ -54,6 +54,10 @@ class Offer < ActiveRecord::Base
       SOURCES.index(source)
     end
 
+    def ru_sources
+      [:freelansim, :fl, :freelance_ru, :weblancer].map{|source| Offer.source_id(source)}
+    end
+
     private
 
     def add_query_condition

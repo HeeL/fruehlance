@@ -9,7 +9,11 @@
 <body>
   <%= render 'shared/ga_code'%>
   <div id="content">
-    <%=mail_to 'parizhskiy@gmail.com', image_tag('mail.png'), class: "mail"%>
+    <div id="navigation">
+      <%=link_to 'Find Job', root_path%>
+      <%=link_to 'Statistic', stats_path%>
+      <%=mail_to 'parizhskiy@gmail.com', image_tag('mail.png'), class: "mail"%>
+    </div>
     <%= yield %>
     <%=image_tag 'loading.gif', id: 'items_loading'%>
   </div>
