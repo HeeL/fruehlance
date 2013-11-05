@@ -2,7 +2,7 @@ $(document).ready(function(){
   hourly_chart = new Highcharts.Chart({
     chart: {
       type: 'line',
-      renderTo: 'chart_container'
+      renderTo: 'hourly_chart'
     },
     title: {
       text: 'Average count of jobs posted in each hour of the day'
