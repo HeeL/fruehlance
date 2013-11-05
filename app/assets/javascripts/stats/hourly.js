@@ -5,7 +5,7 @@ $(document).ready(function(){
       renderTo: 'chart_container'
     },
     title: {
-      text: 'Jobs posted in each hour of the day'
+      text: 'Average count of jobs posted in each hour of the day'
     },
     yAxis: {
       title: {

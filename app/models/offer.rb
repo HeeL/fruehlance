@@ -10,20 +10,25 @@ class Offer < ActiveRecord::Base
   validates :title, length: {minimum: 3}
   validates :desc, length: {minimum: 10}
 
-
-  def self.source_display_name(source_keyname)
-    name = {
-      fl: 'FL',
-      freelance_ru: 'Freelance.ru'
-    }[source_keyname]
-    name ? name : source_keyname.capitalize
-  end
-
   def source_name
     SOURCES[source]
   end
 
   class << self
+
+    def source_name(source_id)
+      SOURCES[source_id]
+    end
+
+    def source_display_name(source_keyname)
+      name = {
+        fl: 'FL',
+        freelance_ru: 'Freelance.ru'
+      }[source_keyname]
+      name ? name : source_keyname.capitalize
+    end
+
+
     def search(params, page)
       @params = params || {}
       @offers = Offer
