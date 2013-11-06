@@ -18,6 +18,23 @@ class Stat
     hour_stats
   end
 
+  def self.daily_stats
+    sql = <<-SQL
+      SELECT source, ROUND(count(*) / double precision '#{STAT_DAYS}') as average_offers, date_part('dow', created_at) as day_num
+      FROM offers 
+      WHERE source IN (#{Offer.ru_sources.join(',')}) AND
+        created_at  BETWEEN '#{STAT_DAYS.days.ago.beginning_of_day}' AND '#{1.day.ago.end_of_day}'
+      GROUP BY source, date_part('dow', created_at)
+    SQL
+    day_stats = {}
+    sql_exec(sql).each do |row|
+      day_stats[row['source']] ||= Array.new(7, 0)
+      day_num = row['day_num'] == '0' ? 6 : row['day_num'].to_i - 1
+      day_stats[row['source']][day_num] = row['average_offers'].to_i
+    end
+    day_stats
+  end
+
   private
 
   def self.sql_exec(sql)

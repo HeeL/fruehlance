@@ -1,0 +1,4 @@
+<%@daily_stats.each do |source_id, data|%>
+  daily_chart.addSeries({name: '<%=Offer.source_display_name(Offer.source_name(source_id.to_i))%>', data: <%=data%>}, false);
+<%end%>
+daily_chart.redraw();
