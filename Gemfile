@@ -32,6 +32,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'shoulda'
   gem 'shoulda-matchers'
+  gem 'mocha', require: false
 end
 
 gem 'unicorn'

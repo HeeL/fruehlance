@@ -1,6 +1,6 @@
 class Stat
 
-  STAT_DAYS = 10
+  STAT_DAYS = 14
 
   def self.hourly_stats
     sql = <<-SQL
@@ -20,7 +20,7 @@ class Stat
 
   def self.daily_stats
     sql = <<-SQL
-      SELECT source, ROUND(count(*) / double precision '#{STAT_DAYS}') as average_offers, date_part('dow', created_at) as day_num
+      SELECT source, ROUND(count(*) / double precision '#{STAT_DAYS / 7}') as average_offers, date_part('dow', created_at) as day_num
       FROM offers 
       WHERE source IN (#{Offer.ru_sources.join(',')}) AND
         created_at  BETWEEN '#{STAT_DAYS.days.ago.beginning_of_day}' AND '#{1.day.ago.end_of_day}'
