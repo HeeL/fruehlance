@@ -2,11 +2,12 @@ require 'test_helper'
 
 class OfferTest < ActiveSupport::TestCase
 
+  setup do
+    @source_id = '0'
+    Offer.stubs(:ru_sources).returns([@source_id.to_i])
+  end
+
   context "daily stats" do
-    setup do
-      @source_id = '0'
-      Offer.stubs(:ru_sources).returns([@source_id.to_i])
-    end
 
     should "calculate average count by week days" do
       create_offer(1.days.ago)
@@ -33,6 +34,21 @@ class OfferTest < ActiveSupport::TestCase
       assert_equal result, Stat.daily_stats
     end
 
+  end
+
+  context "last days stats" do
+    should "get count of offers posted last days" do
+      create_offer(1.days.ago)
+      create_offer(2.days.ago, 2)
+      create_offer(3.days.ago, 3)
+      create_offer(4.days.ago)
+      create_offer(5.days.ago)
+      create_offer(6.days.ago)
+      create_offer(7.days.ago)
+      result = {@source_id => [0,0,0,0,1,2,3]}
+
+      assert_equal result, Stat.last_days_stats
+    end
   end
 
   def create_offer(time, amount = 1)
