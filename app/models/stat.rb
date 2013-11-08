@@ -47,10 +47,10 @@ class Stat
       SQL
       day_stats = {}
       sql_exec(sql).each do |row|
-        day_stats[row['source']] ||= {}
-        day_stats[row['source']][timestamp_from_day(row['day_num'])] = row['offers'].to_i
+        day_stats[row['source']] ||= Array.new(STAT_LAST_DAYS, 0)
+        day_stats[row['source']][day_index(row['day_num'])] = row['offers'].to_i
       end
-      sort_by_days(day_stats)
+      day_stats
     end
 
     private
@@ -59,13 +59,9 @@ class Stat
       ActiveRecord::Base.connection.execute(sql)
     end
 
-    def sort_by_days(day_stats)
-      #day_stats.each{|source, data| data.sort!{|x,y| y<=>x}}
-    end
-
-    def timestamp_from_day(day_num)
+    def day_index(day_num)
       (1..STAT_LAST_DAYS).each do |day|
-        return day.days.ago.to_i if day.days.ago.strftime('%e').lstrip == day_num
+        return STAT_LAST_DAYS - day if day.days.ago.strftime('%e').lstrip == day_num
       end
     end
   end

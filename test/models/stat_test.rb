@@ -40,12 +40,9 @@ class OfferTest < ActiveSupport::TestCase
     should "get count of offers posted last days" do
       create_offer(1.days.ago)
       create_offer(2.days.ago, 2)
-      create_offer(3.days.ago, 3)
-      create_offer(4.days.ago)
-      create_offer(5.days.ago)
-      create_offer(6.days.ago)
-      create_offer(7.days.ago)
-      result = {@source_id => [0,0,0,0,1,2,3]}
+      create_offer(3.days.ago)
+      create_offer(7.days.ago, 3)
+      result = {@source_id => [3,0,0,0,1,2,1]}
 
       assert_equal result, Stat.last_days_stats
     end
