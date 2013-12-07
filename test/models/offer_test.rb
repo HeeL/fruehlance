@@ -2,6 +2,41 @@ require 'test_helper'
 
 class OfferTest < ActiveSupport::TestCase
 
+  context 'search' do
+    
+    setup do
+      @rails_item = FactoryGirl.create(:offer, title: 'Ruby on Rails', desc: 'something about the great framework');
+      @php_item = FactoryGirl.create(:offer, title: 'Zend Framework', desc: 'here is a text that includes php');
+    end
+
+    should "search by title and description" do
+      rails_results = Offer.search({query: 'rails'}, 1)
+      assert_equal 1, rails_results.count
+      assert_equal @rails_item, rails_results.first
+
+      php_results = Offer.search({query: 'php'}, 1)
+      assert_equal 1, php_results.count
+      assert_equal @php_item, php_results.first
+    end
+
+    should "ignore words less then 3 symbols" do
+      results = Offer.search({query: 'the php'}, 1)
+      assert_equal 1, results.count
+      assert_equal @php_item, results.first
+    end
+
+    should "ignore 'the'" do
+      results = Offer.search({query: 'is ruby'}, 1)
+      assert_equal 1, results.count
+      assert_equal @rails_item, results.first
+    end
+
+    should "search for c#" do
+      FactoryGirl.create(:offer, title: 'here is the C#');
+      assert_equal 1, Offer.search({query: 'c#'}, 1).count
+    end
+  end
+
   context "validations" do
     should "validate description" do
       offer = Offer.new

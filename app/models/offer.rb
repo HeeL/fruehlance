@@ -78,7 +78,7 @@ class Offer < ActiveRecord::Base
     end
 
     def split_by_words(query)
-      query.split(' ').reject{|word| word.length < 3 || word == 'the'}
+      query.split(' ').reject{|word| (word.length < 3 || word.downcase == 'the') && word.downcase != 'c#'}
     end
 
   end
